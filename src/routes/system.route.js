@@ -1,8 +1,11 @@
-import express from 'express';
-import { getSystemAnalytics, streamLogs } from '../controllers/analytics.controller.js';
+import { Router } from 'express';
+import SystemAnalyticsController from '../controllers/analytics.controller.js';
 
-const SystemRoute = express.Router();
+const SystemRoute = Router();
 
-SystemRoute.get('/analytics', getSystemAnalytics).get('/logs', streamLogs);
+SystemRoute.get('/analytics', SystemAnalyticsController.getSystemAnalytics).get(
+  '/logs',
+  SystemAnalyticsController.streamLogs
+);
 
 export default SystemRoute;

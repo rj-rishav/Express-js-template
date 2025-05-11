@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/dist": true
+  },
+  "prettier.requireConfig": true, // Use only if .prettierrc is present
+  "javascript.format.enable": false,
+  "sonarlint.connectedMode.project": {
+    "connectionId": "rj-rishav",
+    "projectKey": "rj-rishav_express-template"
+  } // avoid VS Code’s built-in formatter interfering
+}

@@ -1,10 +1,11 @@
-import express from 'express';
+import { Router } from 'express';
 
 // Routes import
 import SystemRoute from './system.route.js';
+import AuthRouter from './auth.route.js';
 
-const MainRouter = express.Router();
+const MainRouter = Router();
 
-MainRouter.use('/system', SystemRoute);
+MainRouter.use('/system', SystemRoute).use('/auth', AuthRouter);
 
 export default MainRouter;

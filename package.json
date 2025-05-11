@@ -1,5 +1,5 @@
 {
-  "name": "field_agent_backend",
+  "name": "nodejs-express-js-starter",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/server.js",
-    "start": "node ./src/server.js && touch ./logs/app.log",
+    "start": "touch ./logs/app.log && node ./src/server.js",
     "format:check": "npx prettier \"src/**/*.js\" --check",
     "format:fix": "npx prettier \"src/**/*.js\" --write",
     "lint:check": "npx eslint \"src/**/*.js\" --max-warnings=0",
@@ -19,23 +19,26 @@
   "license": "ISC",
   "packageManager": "pnpm@10.4.1",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
-    "pg": "^8.14.1",
-    "prettier": "^3.5.3",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.15.6",
     "reflect-metadata": "^0.2.2",
     "tail": "^2.2.6",
-    "typeorm": "^0.3.22",
+    "typeorm": "^0.3.23",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
     "eslint": "^9.26.0",
-    "eslint-config-prettier": "^10.1.2",
+    "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "prettier": "^3.5.3"
   }
 }

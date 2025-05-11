@@ -1,6 +1,6 @@
 import { EntitySchema } from 'typeorm';
 
-export const User = new EntitySchema({
+const UserSchema = new EntitySchema({
   name: 'User',
   tableName: 'users',
   columns: {
@@ -16,6 +16,14 @@ export const User = new EntitySchema({
       type: 'varchar',
       unique: true,
     },
+    password: {
+      type: 'varchar',
+    },
+    role: {
+      type: 'varchar',
+      enum: ['admin', 'user'],
+      default: 'user',
+    },
     createdAt: {
       type: 'timestamp',
       createDate: true,
@@ -26,3 +34,5 @@ export const User = new EntitySchema({
     },
   },
 });
+
+export default UserSchema;

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+set -e
+
+log() {
+  echo "\n👉 $1"
+}
+
+# Check if this is the first commit
+FIRST_COMMIT=false
+if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+  FIRST_COMMIT=true
+fi
+
+log "Checking staged JavaScript files..."
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '^src/.*\.js$' || true)
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "✅ No JS files to format."
+  exit 0
+fi
+
+log "Formatting files with Prettier..."
+for file in $STAGED_FILES; do
+  if [ -f "$file" ]; then
+    echo "📄 Formatting: $file"
+
+    if [ "$FIRST_COMMIT" = false ]; then
+      git restore --staged "$file" || {
+        echo "❌ Failed to unstage $file"
+        exit 1
+      }
+    fi
+
+    npx prettier --write "$file" || {
+      echo "❌ Prettier failed on $file"
+      exit 1
+    }
+
+    git add "$file" || {
+      echo "❌ Failed to re-stage $file"
+      exit 1
+    }
+  else
+    echo "⚠️ File not found: $file"
+  fi
+done
+
+echo "✅ Pre-commit formatting done. All files are clean."
